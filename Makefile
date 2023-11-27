@@ -1,6 +1,7 @@
 
 all:
 	docker run -ti -v miktex:/var/lib/miktex -v `pwd`:/miktex/work -e MIKTEX_UID=`id -u` miktex/miktex:essential pdflatex -output-directory=output main.tex
+	cp output/main.pdf Zoltan_Szocs_CV.en.pdf
 
 # all: en de hu
 #
