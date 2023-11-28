@@ -100,39 +100,49 @@
 %% \addbibresource{main.bib}
 
 \begin{document}
-    \name{Zoltán Szőcs}
-    \tagline{Sr. Software Engineer}
-    %% You can add multiple photos on the left or right
-    \photoL{4cm}{../zoltan_portrait_sq}
-    % \photoL{4cm}{anon}
 
-    \personalinfo{
-        \email{zacsek@gmail.com}\smallskip
-        \phone{+49-157-58094107}
-        \location{Esslingen am Neckar, Germany}\\
-        \linkedin{zoltan-szocs}
-        \github{zacsek}
-        %\npm{npmUser}
-        %\dev{devtoUser}
-        %\homepage{nicolasomar.me}
-        %\medium{nicolasomar}
-        %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
-        % \orcid{0000-0000-0000-0000}
-        %% You can add your own arbtrary detail with
-        %% \printinfo{symbol}{detail}[optional hyperlink prefix]
-        % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
-        %% Or you can declare your own field with
-        %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
-        % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
-        % \gitlab{your_id}
-    }
-    
-    \makecvheader
+    %% Set the left/right column width ratio to 6:4.
+    \columnratio{0.25}
+
+    \begin{paracol}{2}
+
+      %% You can add multiple photos on the left or right
+      % \photoL{4cm}{../zoltan_portrait_sq}
+      % No photo for english CV
+
+      \switchcolumn
+
+      \name{Zoltán Szőcs}
+      \tagline{Sr. Software Engineer}
+
+      \personalinfo{
+        \begin{minipage}[t]{0.3\textwidth}
+          \email{zacsek@gmail.com}\smallskip
+          \phone{+49-157-58094107}
+          \location{Esslingen am Neckar, Germany}\\
+          \linkedin{zoltan-szocs}
+          \github{zacsek}
+          %\npm{npmUser}
+          %\dev{devtoUser}
+          %\homepage{nicolasomar.me}
+          %\medium{nicolasomar}
+          %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
+          % \orcid{0000-0000-0000-0000}
+          %% You can add your own arbtrary detail with
+          %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+          % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
+          %% Or you can declare your own field with
+          %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+          % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+          % \gitlab{your_id}
+        \end{minipage}
+      }
+      
+      \makecvheader
+    \end{paracol}
     %% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
     % \AtBeginEnvironment{itemize}{\small}
     
-    %% Set the left/right column width ratio to 6:4.
-    \columnratio{0.25}
 
     % Start a 2-column paracol. Both the left and right columns will automatically
     % break across pages if things get too long.
