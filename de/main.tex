@@ -101,15 +101,15 @@
 
 \begin{document}
     \name{Zoltán Szőcs}
-    \tagline{Sr. Software Engineer}
+		\tagline{Senior Software-Ingenieur}
     %% You can add multiple photos on the left or right
-    \photoL{4cm}{zoltan_portrait_sq}
+    \photoL{4cm}{../zoltan_portrait_sq}
     % \photoL{4cm}{anon}
 
     \personalinfo{
         \email{zacsek@gmail.com}\smallskip
         \phone{+49-157-58094107}
-        \location{Esslingen am Neckar, Germany}\\
+        \location{Esslingen am Neckar, Deutschland}\\
         \linkedin{zoltan-szocs}
         \github{zacsek}
         %\npm{npmUser}
@@ -138,27 +138,11 @@
     % break across pages if things get too long.
     \begin{paracol}{2}
         % ----- TECH STACK -----
-        \cvsection{TECH STACK}
-            %% Fork v1.6.5c: The sloppypar* environment is used to avoid tags overlapping with section width
-            \begin{sloppypar*}
-                \cvtags{Ruby, Kotlin, Java, Ansible, Rails, PostgreSQL, MySQL, Linux, Docker, Git, RabbitMQ, Sidekiq}
-            \end{sloppypar*}
-        % ----- TECH STACK -----
-        
-        % ----- LEARNING -----
-        \cvsection{Learning}
-            \begin{sloppypar}
-                \cvtags{Rust, ML/AI, AWS, Kubernetes, Terraform}
-            \end{sloppypar}
+        \input{de/tech_stack}
         % ----- LEARNING -----
         
         % ----- LANGUAGES -----
-        \cvsection{Languages}
-            \cvlang{Hungarian}{Native}\\
-            \cvlang{English}{Advanced / C2}
-            \cvlang{German}{Advanced / C1}
-            \cvlang{Romanian}{Advanced / C1}
-            
+        \input{de/languages} 
             %% Yeah I didn't spend too much time making all the
             %% spacing consistent... sorry. Use \smallskip, \medskip,
             %% \bigskip, \vpsace etc to make ajustments.
@@ -204,31 +188,31 @@
         \switchcolumn
         
         % ----- ABOUT ME -----
-        \cvsection{About Me}
-            \input{about_me_short}
+				\cvsection{Über Mich}
+            \input{de/about_me_short}
 
         % ----- ABOUT ME -----
         
         % ----- EXPERIENCE -----
-        \cvsection{Experience}
-            \input{2021_wolters_kluwer}
+				\cvsection{Berufserfahrung}
+            \input{de/2021_wolters_kluwer}
             
-            \input{2015_daimler_kpit}
+            \input{de/2015_daimler_kpit}
 
-            \input{2014_citi}
+            \input{de/2014_citi}
 
-            \input{2011_logmein}
+            \input{de/2011_logmein}
 
-            \input{2006_intellio}
+            \input{de/2006_intellio}
 
-            \input{2005_nokia}
+            \input{de/2005_nokia}
 
-            \input{2004_neogen}
+            \input{de/2004_neogen}
         % ----- EXPERIENCE -----
         
         % ----- EDUCATION -----
-        \cvsection{Education}
-            \input{education}
+				\cvsection{Ausbildung}
+            \input{de/education}
             
         % ----- EDUCATION -----
         
