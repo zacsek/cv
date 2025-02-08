@@ -353,7 +353,7 @@
 % Fork (before v1.6.5a): Tag added for languages rating, avoiding star/button/progress bar previous ideas, I made a simpler and more accurate representation using a single string, which will be colored to be oustanding
 \newcommand{\cvlang}[2]{%
     \textcolor{emphasis}{\textbf{#1: }}
-    \textcolor{accent}{\textbf{#2}}
+    \textcolor{accent}{\textbf{#2}}\\
 }
 
 % Adapted from @Jake's answer at http://tex.stackexchange.com/a/82729/226
