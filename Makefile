@@ -22,7 +22,7 @@ de: $(DE_FILES)
 
 dev: $(DEV_FILES)
 	mkdir -p $(OUTPUT_DIR)
-	$(DOCKER_RUN) -interaction=nonstopmode -output-directory=$(OUTPUT_DIR) devCv/main.tex
+	$(DOCKER_RUN) -interaction=nonstopmode -output-directory=$(OUTPUT_DIR) devCv/main.tex || (echo "\n*** BUILD FAILED ***\nHint: If packages are missing, update packages.txt in the miktex-docker submodule and run 'make build' there." && exit 1)
 	cp $(OUTPUT_DIR)/main.pdf Zoltan_Szocs_CV.devCv.pdf
 
 clean:
