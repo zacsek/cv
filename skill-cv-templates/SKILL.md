@@ -30,6 +30,14 @@ To compile the CV versions, use the provided `Makefile`:
   make dev
   ```
 
+### Handling Build Failures
+
+If a CV compilation fails due to missing LaTeX packages:
+1. Navigate into the `miktex-docker` submodule (`cd miktex-docker`).
+2. Add the missing package name to `packages.txt`.
+3. Run `make build` inside the submodule to rebuild the Docker image with the new package.
+4. Return to this repository and rerun your compile command.
+
 ## Troubleshooting AltaCV
 
 - **Fonts Not Found:** AltaCV requires `Roboto Slab` and `Lato`. Ensure these are available if modifying the font setup.
