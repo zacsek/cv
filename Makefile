@@ -1,6 +1,6 @@
 .PHONY: all en de dev clean
 
-IMAGE := zacsek/miktex:reproducible
+IMAGE := zacsek/miktex
 DOCKER_RUN := docker run --rm -v $(CURDIR):/home/miktex/work -w /home/miktex/work --user 1000:1000 $(IMAGE)
 OUTPUT_DIR := output
 

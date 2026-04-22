@@ -1,11 +1,11 @@
 ---
-name: cv-templates
+name: cv
 description: Workflows for generating CVs using AltaCV and DeveloperCV LaTeX templates. Use for compiling LaTeX CVs, fixing layout issues, or modifying the English, German, or Developer variants.
 ---
 
 # CV Templates Manager
 
-This skill provides specialized workflows for developing and compiling CVs based on AltaCV and DeveloperCV, using the reproducible MiKTeX Docker container.
+This skill provides specialized workflows for developing and compiling CVs based on AltaCV and DeveloperCV, using the MiKTeX Docker container.
 
 ## Workflows
 
