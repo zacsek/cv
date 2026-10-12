@@ -1,0 +1,44 @@
+\documentclass[9pt]{developercv}
+
+\usepackage{layouts/developercv/developercv-adapter}
+
+% Load Common Semantic Content
+\input{content/en/personal_info}
+
+\begin{document}
+
+\renderheader
+
+% --- SUMMARY ---
+\cvsect{Summary}
+\input{content/en/about_me}
+
+% --- SKILLS & LANGUAGES ---
+\begin{minipage}[t]{0.52\textwidth}
+  \cvsect{Skills}
+  \input{content/en/skills}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+  \cvsect{Languages}
+  \vspace{4pt}
+  \input{content/en/languages}
+\end{minipage}
+
+\vspace{6pt}
+
+% --- EXPERIENCE ---
+\cvsect{Experience}
+\input{content/en/experience/2021_wolters_kluwer}
+\input{content/en/experience/2015_daimler_kpit}
+\input{content/en/experience/2014_citi}
+\input{content/en/experience/2011_logmein}
+\input{content/en/experience/2007_intellio}
+\input{content/en/experience/2006_nokia}
+\input{content/en/experience/2004_neogen}
+
+% --- EDUCATION ---
+\cvsect{Education}
+\input{content/en/education}
+
+\end{document}

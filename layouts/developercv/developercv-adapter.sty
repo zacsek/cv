@@ -1,0 +1,127 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{developercv-adapter}[2026/10/12 DeveloperCV Semantic Adapter]
+
+\RequirePackage{common/cv-interface}
+\RequirePackage{tikz}
+
+% Provide FontAwesome compatibility aliases if needed
+\providecommand{\faTools}{\faWrench}
+\providecommand{\faCalendar}{\faCalendarO}
+
+% --- Map Semantic Macros to DeveloperCV Primitives ---
+
+\renewcommand{\cvexperience}[6]{%
+  \noindent
+  \begin{minipage}[t]{0.17\textwidth}
+    \raggedright\small\textbf{#3}% Dates
+  \end{minipage}%
+  \hspace{0.03\textwidth}%
+  \begin{minipage}[t]{0.80\textwidth}
+    {\textbf{\large #1}}% Role
+    \hfill
+    {\footnotesize\textbf{\textcolor{black}{#2\ifstrequal{#4}{}{}{ -- #4}}}}\par
+    \ifstrequal{#6}{}{}{%
+      \vspace{2pt}%
+      \begin{itemize}[noitemsep,topsep=1pt,parsep=1pt,partopsep=0pt,leftmargin=12pt]
+        #6
+      \end{itemize}%
+    }%
+    \ifstrequal{#5}{}{}{%
+      \vspace{3pt}%
+      {\footnotesize\textcolor{black!60}{\faWrench\ #5}}\par
+    }%
+  \end{minipage}\par
+  \vspace{8pt}%
+}
+
+\renewcommand{\cveducation}[5]{%
+  \noindent
+  \begin{minipage}[t]{0.17\textwidth}
+    \raggedright\small\textbf{#3}% Dates
+  \end{minipage}%
+  \hspace{0.03\textwidth}%
+  \begin{minipage}[t]{0.80\textwidth}
+    {\textbf{\large #1}}% Degree
+    \hfill
+    {\footnotesize\textbf{\textcolor{black}{#2\ifstrequal{#4}{}{}{ -- #4}}}}\par
+    \ifstrequal{#5}{}{}{%
+      \vspace{2pt}#5\par
+    }%
+  \end{minipage}\par
+  \vspace{6pt}%
+}
+
+% Pill tags for skills in DeveloperCV
+\providecommand{\cvtag}[1]{%
+  \tikz[baseline]\node[anchor=base,draw=black!40,fill=black!3,rounded corners=2pt,inner xsep=0.8ex,inner ysep=0.5ex,text height=1.3ex,text depth=.25ex]{\small #1};%
+  \hspace{0.4ex}%
+}
+
+\providecommand{\cvtags}[1]{%
+  \foreach \tagValue in {#1} {%
+    \cvtag{\tagValue}%
+  }%
+}
+
+\renewcommand{\cvskillgroup}[2]{%
+  \vspace{3pt}%
+  \textbf{#1:}\par\vspace{2pt}%
+  \begin{sloppypar*}%
+    \cvtags{#2}%
+  \end{sloppypar*}%
+  \vspace{4pt}%
+}
+
+\renewcommand{\cvlanguage}[2]{%
+  \noindent\textbf{#1}: \textit{#2}\par\vspace{2pt}%
+}
+
+\renewcommand{\cvprofile}[1]{%
+  #1\par\vspace{6pt}%
+}
+
+\renewcommand{\cvsectiontitle}[1]{%
+  \cvsect{#1}%
+}
+
+\providecommand{\cvsection}[1]{\cvsect{#1}}
+
+% --- Header Renderer for DeveloperCV ---
+\newcommand{\renderheader}{%
+  \noindent
+  \ifstrequal{\getcvphoto}{}{%
+    \begin{minipage}[t]{0.48\textwidth}
+      \vspace{-\baselineskip}
+      {\fontsize{18}{22}\selectfont\textbf{\MakeUppercase{\getcvname}}}\par
+      \vspace{4pt}
+      {\Large\textcolor{black!75}{\getcvtagline}}\par
+    \end{minipage}%
+  }{%
+    \begin{minipage}[t]{0.15\textwidth}
+      \vspace{-\baselineskip}
+      \includegraphics[width=\linewidth,keepaspectratio]{\getcvphoto}
+    \end{minipage}%
+    \hspace{0.03\textwidth}%
+    \begin{minipage}[t]{0.35\textwidth}
+      \vspace{-\baselineskip}
+      {\fontsize{18}{22}\selectfont\textbf{\MakeUppercase{\getcvname}}}\par
+      \vspace{4pt}
+      {\Large\textcolor{black!75}{\getcvtagline}}\par
+    \end{minipage}%
+  }%
+  \hfill
+  \begin{minipage}[t]{0.22\textwidth}
+    \vspace{-\baselineskip}
+    \ifstrequal{\getcvphone}{}{}{\icon{Phone}{11}{\getcvphone}\\}%
+    \ifstrequal{\getcvlocation}{}{}{\icon{MapMarker}{11}{\getcvlocation}\\}%
+    \ifstrequal{\getcvemail}{}{}{\icon{Envelope}{11}{\href{mailto:\getcvemail}{\getcvemail}}\\}%
+  \end{minipage}%
+  \begin{minipage}[t]{0.22\textwidth}
+    \vspace{-\baselineskip}
+    \ifstrequal{\getcvgithub}{}{}{\icon{Github}{11}{\href{https://github.com/\getcvgithub}{github.com/\getcvgithub}}\\}%
+    \ifstrequal{\getcvlinkedin}{}{}{\icon{LinkedinSquare}{11}{\href{https://linkedin.com/in/\getcvlinkedin}{/in/\getcvlinkedin}}\\}%
+  \end{minipage}\par
+  \vspace{12pt}%
+}
+
+\endinput

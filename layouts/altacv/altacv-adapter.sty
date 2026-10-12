@@ -1,0 +1,68 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{altacv-adapter}[2026/10/12 AltaCV Semantic Adapter]
+
+\RequirePackage{common/cv-interface}
+
+% --- Map Semantic Macros to AltaCV Primitives ---
+
+\renewcommand{\cvexperience}[6]{%
+  \cvevent{#1}{#2}{#3}{#4}{#5}%
+  \ifstrequal{#6}{}{}{%
+    \begin{minipage}{\linewidth}%
+      \begin{itemize}
+        #6
+      \end{itemize}
+    \end{minipage}\par
+  }%
+  \smallskip
+  \divider
+  \par\medskip
+}
+
+\renewcommand{\cveducation}[5]{%
+  \cvstudy{#1}{#2}{#3}{#4}%
+  \ifstrequal{#5}{}{}{%
+    \begin{minipage}{\linewidth}%
+      #5
+    \end{minipage}\par
+  }%
+  \smallskip
+  \divider
+  \par\medskip
+}
+
+\renewcommand{\cvskillgroup}[2]{%
+  \cvsection{#1}%
+  \begin{sloppypar*}%
+    \cvtags{#2}%
+  \end{sloppypar*}%
+}
+
+\renewcommand{\cvlanguage}[2]{%
+  \cvlang{#1}{#2}%
+}
+
+\renewcommand{\cvprofile}[1]{%
+  \begin{minipage}{\linewidth}%
+    \begin{quote}
+      #1
+    \end{quote}
+  \end{minipage}\par
+}
+
+% Macro to render AltaCV header from semantic metadata matching original structure
+\newcommand{\renderheader}{%
+  \name{\getcvname}%
+  \tagline{\getcvtagline}%
+  \ifstrequal{\getcvphoto}{}{}{\photoL{4cm}{\getcvphoto}}%
+  \personalinfo{%
+    \ifstrequal{\getcvemail}{}{}{\email{\getcvemail}\smallskip}%
+    \ifstrequal{\getcvphone}{}{}{\phone{\getcvphone}}%
+    \ifstrequal{\getcvlocation}{}{}{\location{\getcvlocation}\\}%
+    \ifstrequal{\getcvlinkedin}{}{}{\linkedin{\getcvlinkedin}}%
+    \ifstrequal{\getcvgithub}{}{}{\github{\getcvgithub}}%
+  }%
+  \makecvheader
+}
+
+\endinput

@@ -1,0 +1,103 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cv-interface}[2026/10/12 Unified Semantic CV Interface]
+
+\RequirePackage{etoolbox}
+
+% --- Candidate Metadata Storage ---
+\newcommand{\@cvname}{}
+\newcommand{\@cvtagline}{}
+\newcommand{\@cvphoto}{}
+\newcommand{\@cvemail}{}
+\newcommand{\@cvphone}{}
+\newcommand{\@cvlocation}{}
+\newcommand{\@cvlinkedin}{}
+\newcommand{\@cvgithub}{}
+
+\newcommand{\cvname}[1]{\renewcommand{\@cvname}{#1}}
+\newcommand{\cvtagline}[1]{\renewcommand{\@cvtagline}{#1}}
+\newcommand{\cvphoto}[1]{\renewcommand{\@cvphoto}{#1}}
+\newcommand{\cvemail}[1]{\renewcommand{\@cvemail}{#1}}
+\newcommand{\cvphone}[1]{\renewcommand{\@cvphone}{#1}}
+\newcommand{\cvlocation}[1]{\renewcommand{\@cvlocation}{#1}}
+\newcommand{\cvlinkedin}[1]{\renewcommand{\@cvlinkedin}{#1}}
+\newcommand{\cvgithub}[1]{\renewcommand{\@cvgithub}{#1}}
+
+% Getters
+\newcommand{\getcvname}{\@cvname}
+\newcommand{\getcvtagline}{\@cvtagline}
+\newcommand{\getcvphoto}{\@cvphoto}
+\newcommand{\getcvemail}{\@cvemail}
+\newcommand{\getcvphone}{\@cvphone}
+\newcommand{\getcvlocation}{\@cvlocation}
+\newcommand{\getcvlinkedin}{\@cvlinkedin}
+\newcommand{\getcvgithub}{\@cvgithub}
+
+% --- Fallback implementations for semantic macros ---
+% Specific layout adapters will provide custom layout implementations.
+
+\providecommand{\cvexperience}[6]{%
+  % #1: Role / Title
+  % #2: Company / Organization
+  % #3: Date Range
+  % #4: Location
+  % #5: Tech Stack / Keywords
+  % #6: Bullet items (e.g. \item ...)
+  \textbf{#1} -- \textit{#2} \hfill #3\par
+  \ifstrequal{#4}{}{}{\small #4\par}%
+  \ifstrequal{#5}{}{}{\small\textbf{Tech:} #5\par}%
+  \begin{itemize}
+    #6
+  \end{itemize}
+}
+
+\providecommand{\cveducation}[5]{%
+  % #1: Degree
+  % #2: Institution
+  % #3: Date Range
+  % #4: Location
+  % #5: Details
+  \textbf{#1} -- \textit{#2} \hfill #3\par
+  \ifstrequal{#4}{}{}{\small #4\par}%
+  \ifstrequal{#5}{}{}{#5\par}%
+}
+
+\providecommand{\cvskillgroup}[2]{%
+  % #1: Group Title
+  % #2: Comma-separated list of skills
+  \textbf{#1}: #2\par
+}
+
+\providecommand{\cvlanguage}[2]{%
+  % #1: Language
+  % #2: Level / Proficiency
+  \textbf{#1}: #2\par
+}
+
+\providecommand{\cvprofile}[1]{%
+  #1\par
+}
+
+\providecommand{\cvsectiontitle}[1]{%
+  \section*{#1}
+}
+
+% --- Compatibility with AltaCV legacy commands ---
+\providecommand{\cvevent}[5]{%
+  \cvexperience{#1}{#2}{#3}{#4}{#5}{}
+}
+
+\providecommand{\cvstudy}[4]{%
+  \cveducation{#1}{#2}{#3}{#4}{}
+}
+
+\providecommand{\cvlang}[2]{%
+  \cvlanguage{#1}{#2}
+}
+
+\providecommand{\divider}{}
+
+\ifcsmacro{sloppypar*}{}{%
+  \newenvironment{sloppypar*}{\sloppy\ignorespaces}{\par}%
+}
+
+\endinput

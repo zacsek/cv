@@ -1,0 +1,80 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+\geometry{left=1.2cm,right=1.2cm,top=1cm,bottom=1cm,columnsep=0.75cm}
+\usepackage{paracol}
+
+\ifxetexorluatex
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+\definecolor{PrimaryColor}{HTML}{001F5A}
+\definecolor{SecondaryColor}{HTML}{0039AC}
+\definecolor{ThirdColor}{HTML}{F3890B}
+\definecolor{BodyColor}{HTML}{666666}
+\definecolor{EmphasisColor}{HTML}{2E2E2E}
+\definecolor{BackgroundColor}{HTML}{E2E2E2}
+
+\colorlet{name}{PrimaryColor}
+\colorlet{tagline}{SecondaryColor}
+\colorlet{heading}{PrimaryColor}
+\colorlet{headingrule}{ThirdColor}
+\colorlet{subheading}{SecondaryColor}
+\colorlet{accent}{SecondaryColor}
+\colorlet{emphasis}{EmphasisColor}
+\colorlet{body}{BodyColor}
+\pagecolor{BackgroundColor}
+
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\small\bfseries}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+\usepackage{layouts/altacv/altacv-adapter}
+
+% Load Common Semantic Content
+\input{content/en/personal_info}
+
+\begin{document}
+    \renderheader
+
+    \columnratio{0.25}
+
+    \begin{paracol}{2}
+        % ----- LEFT COLUMN -----
+        \input{content/en/skills}
+        \cvsection{Languages}
+        \input{content/en/languages}
+
+        \newpage
+
+        % ----- RIGHT COLUMN -----
+        \switchcolumn
+
+        \cvsection{About Me}
+        \input{content/en/about_me}
+
+        \cvsection{Experience}
+        \input{content/en/experience/2021_wolters_kluwer}
+        \input{content/en/experience/2015_daimler_kpit}
+        \input{content/en/experience/2014_citi}
+
+        \newpage
+
+        \input{content/en/experience/2011_logmein}
+        \input{content/en/experience/2007_intellio}
+        \input{content/en/experience/2006_nokia}
+        \input{content/en/experience/2004_neogen}
+
+        \cvsection{Education}
+        \input{content/en/education}
+    \end{paracol}
+\end{document}
