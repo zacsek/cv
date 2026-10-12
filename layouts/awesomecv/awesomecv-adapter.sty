@@ -1,0 +1,94 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{awesomecv-adapter}[2026/10/13 Awesome-CV Semantic Adapter]
+
+\RequirePackage{common/cv-interface}
+
+% Allow \cventry to accept multi-paragraph / environment content in argument 5
+\RenewDocumentCommand{\cventry}{m m m m +m}{%
+  \vspace{-2.0mm}%
+  \setlength\tabcolsep{0pt}%
+  \setlength{\extrarowheight}{0pt}%
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}%
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}%
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\%
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}%
+    \ifstrempty{#5}%
+      {}%
+      {\multicolumn{2}{L{\textwidth}}{{\fontsize{9pt}{1.2em}\bodyfont\upshape\color{text} #5}} \\}%
+  \end{tabular*}%
+}
+
+% Redefine cvskills using standard tabular* so \input works reliably
+\renewenvironment{cvskills}{%
+  \vspace{\acvSectionContentTopSkip}%
+  \vspace{-2.0mm}%
+  \setlength\tabcolsep{1.5ex}%
+  \setlength{\extrarowheight}{1pt}%
+  \noindent\begin{tabular*}{\textwidth}{@{}r@{\hspace{2.5ex}}>{\raggedright\arraybackslash}p{\dimexpr\textwidth-4.5cm\relax}@{}}
+}{%
+  \end{tabular*}\par
+}
+
+% --- Map Semantic Macros to Awesome-CV Primitives ---
+
+\renewcommand{\cvexperience}[6]{%
+  \cventry
+    {#1\ifstrequal{#5}{}{}{ \normalfont\fontsize{8.5pt}{1em}\color{graytext}\textbar\ #5}} % Job title + Tech stack
+    {#2} % Organization
+    {#4} % Location
+    {#3} % Date(s)
+    {%
+      \ifstrequal{#6}{}{}{%
+        \begin{cvitems}
+          #6
+        \end{cvitems}
+      }%
+    }%
+}
+
+\renewcommand{\cveducation}[5]{%
+  \cventry
+    {#1} % Degree
+    {#2} % Institution
+    {#4} % Location
+    {#3} % Date(s)
+    {%
+      \ifstrequal{#5}{}{}{%
+        \begin{cvitems}
+          #5
+        \end{cvitems}
+      }%
+    }%
+}
+
+\renewcommand{\cvskillgroup}[2]{%
+  \skilltypestyle{#1} & \skillsetstyle{#2} \\
+}
+
+\renewcommand{\cvlanguage}[2]{%
+  \skilltypestyle{#1} & \skillsetstyle{#2} \\
+}
+
+\renewcommand{\cvprofile}[1]{%
+  \par\vspace{1.5mm}%
+  \begin{cvparagraph}
+    #1
+  \end{cvparagraph}
+}
+
+% Macro to render Awesome-CV header
+\newcommand{\renderheader}{%
+  \StrCut{\getcvname}{ }{\getcvfirstname}{\getcvlastname}%
+  \name{\getcvfirstname}{\getcvlastname}%
+  \position{\getcvtagline}%
+  \ifstrequal{\getcvphoto}{}{}{\photo[circle,edge,left]{\getcvphoto}}%
+  \ifstrequal{\getcvlocation}{}{}{\address{\getcvlocation}}%
+  \ifstrequal{\getcvphone}{}{}{\mobile{\getcvphone}}%
+  \ifstrequal{\getcvemail}{}{}{\email{\getcvemail}}%
+  \ifstrequal{\getcvlinkedin}{}{}{\linkedin{\getcvlinkedin}}%
+  \ifstrequal{\getcvgithub}{}{}{\github{\getcvgithub}}%
+  \makecvheader[L]%
+}
+
+\endinput

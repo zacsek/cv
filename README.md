@@ -1,15 +1,16 @@
 # Unified Multi-Class CV Framework
 
-A modular, dual-class LaTeX CV build system compiling a single semantic source of truth into two distinct visual design styles: **AltaCV** and **DeveloperCV**, in both **English** and **German**.
+A modular, multi-class LaTeX CV build system compiling a single semantic source of truth into three distinct visual design styles: **AltaCV**, **DeveloperCV**, and **Awesome-CV**, in both **English** and **German**.
 
 ---
 
 ## Highlights
 
 - **Single Source of Truth:** Update experience, tech stack, education, or contact details in one place (`content/en/` or `content/de/`); changes propagate across all layouts automatically.
-- **Dual Visual Styles:**
+- **Triple Visual Styles:**
   - **AltaCV:** Classic two-column infographic layout with fontawesome icons, skill tag clouds, and dashed dividers.
   - **DeveloperCV:** Modern developer-focused layout with a left-margin date track, bold headings, and TikZ skill pills.
+  - **Awesome-CV:** Silicon Valley tech resume style with a sleek header, clean horizontal rules, and metadata-aligned experience blocks (compiled via XeLaTeX).
 - **Clean Content / Layout Separation:** All content files use pure semantic LaTeX macros with zero presentation markup. Visual rendering is managed by class-specific adapter packages.
 - **Dockerized Build System:** Fully automated compilation using a local MiKTeX Docker container (`zacsek/miktex`) with automatic package installation enabled (`-enable-installer`).
 
@@ -43,12 +44,17 @@ cv/
 │   │   ├── altacv-adapter.sty         # AltaCV visual adapter
 │   │   ├── main_en.tex                # AltaCV English driver
 │   │   └── main_de.tex                # AltaCV German driver
-│   └── developercv/
-│       ├── developercv-adapter.sty    # DeveloperCV visual adapter
-│       ├── main_en.tex                # DeveloperCV English driver
-│       └── main_de.tex                # DeveloperCV German driver
+│   ├── developercv/
+│   │   ├── developercv-adapter.sty    # DeveloperCV visual adapter
+│   │   ├── main_en.tex                # DeveloperCV English driver
+│   │   └── main_de.tex                # DeveloperCV German driver
+│   └── awesomecv/
+│       ├── awesomecv-adapter.sty      # Awesome-CV visual adapter
+│       ├── main_en.tex                # Awesome-CV English driver
+│       └── main_de.tex                # Awesome-CV German driver
 ├── altacv.cls                         # AltaCV LaTeX class
 ├── developercv.cls                    # DeveloperCV LaTeX class
+├── awesome-cv.cls                     # Awesome-CV LaTeX class
 ├── Makefile                           # Build orchestration
 └── output/                            # Transient compiler logs and auxiliary files
 ```
@@ -69,15 +75,18 @@ Compile CVs by running `make` targets from the project root:
 
 | Command | Description | Output Files |
 | :--- | :--- | :--- |
-| `make all` | Builds all 4 CV variants | All 4 PDFs listed below |
+| `make all` | Builds all 6 CV variants | All 6 PDFs listed below |
 | `make altacv` | Builds both AltaCV variants (EN + DE) | `Zoltan_Szocs_CV.altacv.en.pdf`<br>`Zoltan_Szocs_CV.altacv.de.pdf` |
 | `make devcv` | Builds both DeveloperCV variants (EN + DE) | `Zoltan_Szocs_CV.developercv.en.pdf`<br>`Zoltan_Szocs_CV.developercv.de.pdf` |
-| `make en` | Builds English versions for both styles | `Zoltan_Szocs_CV.altacv.en.pdf`<br>`Zoltan_Szocs_CV.developercv.en.pdf` |
-| `make de` | Builds German versions for both styles | `Zoltan_Szocs_CV.altacv.de.pdf`<br>`Zoltan_Szocs_CV.developercv.de.pdf` |
-| `make altacv-en` | Builds English AltaCV | `Zoltan_Szocs_CV.altacv.en.pdf` *(also copies `Zoltan_Szocs_CV.en.pdf`)* |
-| `make altacv-de` | Builds German AltaCV | `Zoltan_Szocs_CV.altacv.de.pdf` *(also copies `Zoltan_Szocs_CV.de.pdf`)* |
-| `make devcv-en` | Builds English DeveloperCV | `Zoltan_Szocs_CV.developercv.en.pdf` *(also copies `Zoltan_Szocs_CV.devCv.pdf`)* |
+| `make awesomecv` | Builds both Awesome-CV variants (EN + DE) | `Zoltan_Szocs_CV.awesomecv.en.pdf`<br>`Zoltan_Szocs_CV.awesomecv.de.pdf` |
+| `make en` | Builds English versions for all 3 styles | `Zoltan_Szocs_CV.altacv.en.pdf`<br>`Zoltan_Szocs_CV.developercv.en.pdf`<br>`Zoltan_Szocs_CV.awesomecv.en.pdf` |
+| `make de` | Builds German versions for all 3 styles | `Zoltan_Szocs_CV.altacv.de.pdf`<br>`Zoltan_Szocs_CV.developercv.de.pdf`<br>`Zoltan_Szocs_CV.awesomecv.de.pdf` |
+| `make altacv-en` | Builds English AltaCV | `Zoltan_Szocs_CV.altacv.en.pdf` *(copies `Zoltan_Szocs_CV.en.pdf`)* |
+| `make altacv-de` | Builds German AltaCV | `Zoltan_Szocs_CV.altacv.de.pdf` *(copies `Zoltan_Szocs_CV.de.pdf`)* |
+| `make devcv-en` | Builds English DeveloperCV | `Zoltan_Szocs_CV.developercv.en.pdf` *(copies `Zoltan_Szocs_CV.devCv.pdf`)* |
 | `make devcv-de` | Builds German DeveloperCV | `Zoltan_Szocs_CV.developercv.de.pdf` |
+| `make awesomecv-en` | Builds English Awesome-CV | `Zoltan_Szocs_CV.awesomecv.en.pdf` |
+| `make awesomecv-de` | Builds German Awesome-CV | `Zoltan_Szocs_CV.awesomecv.de.pdf` |
 | `make clean` | Deletes build artifacts in `output/` and root PDFs | — |
 
 ---

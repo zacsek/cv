@@ -1,0 +1,50 @@
+\documentclass[11pt, a4paper]{awesome-cv}
+
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+
+% Color for highlights
+\colorlet{awesome}{awesome-skyblue}
+
+\usepackage{layouts/awesomecv/awesomecv-adapter}
+
+% Load Common Semantic Content
+\input{content/de/personal_info}
+
+\begin{document}
+
+\renderheader
+
+% --- SUMMARY ---
+\cvsection{Über mich}
+\input{content/de/about_me}
+
+% --- SKILLS & LANGUAGES ---
+\cvsection{Fähigkeiten}
+\begin{cvskills}
+  \input{content/de/skills}
+\end{cvskills}
+
+\cvsection{Sprachen}
+\begin{cvskills}
+  \input{content/de/languages}
+\end{cvskills}
+
+% --- EXPERIENCE ---
+\cvsection{Berufserfahrung}
+\begin{cventries}
+  \input{content/de/experience/2021_wolters_kluwer}
+  \input{content/de/experience/2015_daimler_kpit}
+  \input{content/de/experience/2014_citi}
+  \input{content/de/experience/2011_logmein}
+  \input{content/de/experience/2007_intellio}
+  \input{content/de/experience/2006_nokia}
+  \input{content/de/experience/2004_neogen}
+\end{cventries}
+
+% --- EDUCATION ---
+\cvsection{Ausbildung}
+\begin{cventries}
+  \input{content/de/education}
+\end{cventries}
+
+\end{document}

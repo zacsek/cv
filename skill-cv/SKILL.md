@@ -1,11 +1,11 @@
 ---
 name: cv
-description: Workflows for developing and generating CVs using the unified multi-class architecture (AltaCV and DeveloperCV) with Dockerized MiKTeX.
+description: Workflows for developing and generating CVs using the unified multi-class architecture (AltaCV, DeveloperCV, and Awesome-CV) with Dockerized MiKTeX.
 ---
 
 # Unified Multi-Class CV Framework
 
-This project maintains a unified curriculum vitae compiled into two alternate LaTeX design classes (**AltaCV** and **DeveloperCV**) across two languages (**English** and **German**). The system completely decouples semantic content from visual presentation through a modular adapter layer.
+This project maintains a unified curriculum vitae compiled into three alternate LaTeX design classes (**AltaCV**, **DeveloperCV**, and **Awesome-CV**) across two languages (**English** and **German**). The system completely decouples semantic content from visual presentation through a modular adapter layer.
 
 ---
 
@@ -30,12 +30,17 @@ cv/
 │   │   ├── altacv-adapter.sty         # AltaCV visual adapter
 │   │   ├── main_en.tex                # AltaCV English driver
 │   │   └── main_de.tex                # AltaCV German driver
-│   └── developercv/
-│       ├── developercv-adapter.sty    # DeveloperCV visual adapter
-│       ├── main_en.tex                # DeveloperCV English driver
-│       └── main_de.tex                # DeveloperCV German driver
+│   ├── developercv/
+│   │   ├── developercv-adapter.sty    # DeveloperCV visual adapter
+│   │   ├── main_en.tex                # DeveloperCV English driver
+│   │   └── main_de.tex                # DeveloperCV German driver
+│   └── awesomecv/
+│       ├── awesomecv-adapter.sty      # Awesome-CV visual adapter
+│       ├── main_en.tex                # Awesome-CV English driver
+│       └── main_de.tex                # Awesome-CV German driver
 ├── altacv.cls                         # AltaCV class file
 ├── developercv.cls                    # DeveloperCV class file
+├── awesome-cv.cls                     # Awesome-CV class file
 └── Makefile                           # Docker-driven compilation targets
 ```
 
@@ -47,11 +52,12 @@ Compilation runs inside the `zacsek/miktex` Docker container with automatic depe
 
 | Command | Description | Output Files |
 | :--- | :--- | :--- |
-| `make all` | Builds all 4 CV variants | `Zoltan_Szocs_CV.altacv.{en,de}.pdf`, `Zoltan_Szocs_CV.developercv.{en,de}.pdf` |
+| `make all` | Builds all 6 CV variants | `Zoltan_Szocs_CV.{altacv,developercv,awesomecv}.{en,de}.pdf` |
 | `make altacv` | Builds AltaCV (EN + DE) | `Zoltan_Szocs_CV.altacv.en.pdf`, `Zoltan_Szocs_CV.altacv.de.pdf` |
 | `make devcv` | Builds DeveloperCV (EN + DE) | `Zoltan_Szocs_CV.developercv.en.pdf`, `Zoltan_Szocs_CV.developercv.de.pdf` |
-| `make en` | Builds English versions for both styles | `Zoltan_Szocs_CV.altacv.en.pdf`, `Zoltan_Szocs_CV.developercv.en.pdf` |
-| `make de` | Builds German versions for both styles | `Zoltan_Szocs_CV.altacv.de.pdf`, `Zoltan_Szocs_CV.developercv.de.pdf` |
+| `make awesomecv` | Builds Awesome-CV (EN + DE) | `Zoltan_Szocs_CV.awesomecv.en.pdf`, `Zoltan_Szocs_CV.awesomecv.de.pdf` |
+| `make en` | Builds English versions for all 3 styles | `Zoltan_Szocs_CV.altacv.en.pdf`, `Zoltan_Szocs_CV.developercv.en.pdf`, `Zoltan_Szocs_CV.awesomecv.en.pdf` |
+| `make de` | Builds German versions for all 3 styles | `Zoltan_Szocs_CV.altacv.de.pdf`, `Zoltan_Szocs_CV.developercv.de.pdf`, `Zoltan_Szocs_CV.awesomecv.de.pdf` |
 | `make clean` | Removes `output/` directory and generated PDFs | — |
 
 *Note: For backward compatibility, `make altacv-en` also updates `Zoltan_Szocs_CV.en.pdf`, and `make altacv-de` updates `Zoltan_Szocs_CV.de.pdf`.*
